@@ -1,9 +1,11 @@
-#-*-coding:utf-8-*-
-import mysql.connector as mysql
+#-*-coding:utf-8-*-from utility import *
+from tkinter import ttk,Tk,Label,Entry
+import tkinter as tk
+from shaonutil.mysqlDB import MySQL
 import shaonutil
 import os
-from utility import *
-from shaonutil.mysqlDB import MySQL
+import time
+
 """
 go to mysql folder > aria_chk -r
 delete araia_log.### files in mysql data folder
@@ -17,7 +19,7 @@ if os.path.isfile('private/config.ini'):
 	print("Configurations found !")
 else:
 	print("Creating configurations ...")
-	create_configuration('gui')
+	shaonutil.mysqlDB.create_configuration('gui')
 
 # start mysql server
 config = shaonutil.file.read_configuration_ini('private/config.ini')
