@@ -6,15 +6,6 @@ import shaonutil
 import os
 import time
 
-"""
-go to mysql folder > aria_chk -r
-delete araia_log.### files in mysql data folder
-change the port=3306 to anything else in line 20,28 in my.ini in mysql data folder
-if anything didn't recover then, go to mysqsl/backup, copy everything and go to mysql/data folder , delete everything and past here.
-"""
-
-
-
 if os.path.isfile('private/config.ini'):
 	print("Configurations found !")
 else:
@@ -23,9 +14,9 @@ else:
 
 # start mysql server
 config = shaonutil.file.read_configuration_ini('private/config.ini')
-process = shaonutil.process.start_mysql_server(config['MYSQL']['mysql_bin_folder'],"private/my.ini")
-print(process.pid)	
-
+if not shaonutil.process.is_process_exist('mysqld.exe'):
+	process = shaonutil.process.start_mysql_server(config['MYSQL']['mysql_bin_folder'],"private/my.ini")
+	#shaonutil.process.killProcess_ByAll("mysqld.exe")
 
 time.sleep(1)
 
