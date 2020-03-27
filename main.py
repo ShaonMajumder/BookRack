@@ -15,8 +15,7 @@ else:
 # start mysql server
 config = shaonutil.file.read_configuration_ini('private/config.ini')
 if not shaonutil.process.is_process_exist('mysqld.exe'):
-	process = shaonutil.process.start_mysql_server(config['MYSQL']['mysql_bin_folder'],"private/my.ini")
-	#shaonutil.process.killProcess_ByAll("mysqld.exe")
+	process = shaonutil.process.start_mysql_server(config['MYSQL']['mysql_bin_folder'],"private/my.ini")	
 
 time.sleep(1)
 
@@ -87,3 +86,5 @@ insertion_form()
 
 #Name+Writer+Publisher> convert to barcode/qrcode
 #Barcode/QRCode > Name+Writer+Publisher
+
+shaonutil.process.killProcess_ByAll("mysqld.exe")
